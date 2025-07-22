@@ -15,10 +15,34 @@ const BlogFeed = () => {
     { id: 'wellness', name: 'Wellness Retreats', color: 'emerald' },
     { id: 'culinary', name: 'Epicurean Journeys', color: 'rose' },
     { id: 'culture', name: 'Local Culture', color: 'blue' },
-    { id: 'luxury', name: 'Luxury Escapes', color: 'purple' }
+    { id: 'luxury', name: 'Luxury Escapes', color: 'purple' },
+    { id: 'caribbean', name: 'Caribbean Paradise', color: 'cyan' },
+    { id: 'transformative', name: 'Transformative Travel', color: 'violet' }
   ];
 
   const blogPosts = [
+    {
+      id: 'luxury-retreats-transformation',
+      title: "5 Exclusive Luxury Retreats To Transform Your Travel Experience",
+      excerpt: "Discover extraordinary retreats that offer the sacred gift of transformation, where every breath becomes a prayer and every experience writes itself into who you are.",
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=600&fit=crop",
+      category: 'transformative',
+      author: 'Seeta Luxury Travel Team',
+      readTime: '18 min read',
+      date: '2025-01-21',
+      featured: true
+    },
+    {
+      id: 'sandals-grande-antigua',
+      title: "Sandals Grande Antigua: Your Ultimate Caribbean Paradise",
+      excerpt: "Discover luxury, romance, and adventure on Dickenson Bay, one of the Caribbean's most beautiful beaches with world-class amenities.",
+      image: "https://images.unsplash.com/photo-1559475555-6f5a22e60b5a?w=800&h=600&fit=crop",
+      category: 'caribbean',
+      author: 'Seeta Luxury Travel Team',
+      readTime: '15 min read',
+      date: '2025-01-20',
+      featured: true
+    },
     {
       id: 'club-med-quebec-escape',
       title: "Discover Your Year-Round Escape at Club Med Québec Charlevoix",
@@ -104,9 +128,7 @@ const BlogFeed = () => {
     }
   ];
 
-  const filteredPosts = activeFilter === 'all' 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeFilter);
+  const filteredPosts = activeFilter === 'all' ? blogPosts : blogPosts.filter(post => post.category === activeFilter);
 
   return (
     <section className="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-800">
@@ -151,10 +173,7 @@ const BlogFeed = () => {
         </motion.div>
 
         {/* Blog Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post, index) => (
             <motion.article
               key={post.id}
@@ -245,7 +264,10 @@ const BlogFeed = () => {
                   >
                     <SafeIcon icon={FiHeart} className="text-sm" />
                     <span className="text-sm">
-                      {post.id === 'club-med-quebec-escape' ? '45' : post.id === 'club-med-quebec' ? '32' : '24'}
+                      {post.id === 'luxury-retreats-transformation' ? '67' :
+                       post.id === 'sandals-grande-antigua' ? '28' : 
+                       post.id === 'club-med-quebec-escape' ? '45' : 
+                       post.id === 'club-med-quebec' ? '32' : '24'}
                     </span>
                   </motion.button>
                 </div>

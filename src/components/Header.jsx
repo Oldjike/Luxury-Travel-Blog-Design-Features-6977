@@ -74,6 +74,14 @@ const Header=()=> {
             >
               About
             </Link>
+            <a
+              href="https://seetaluxuryescape.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-amber-400 transition-colors font-light"
+            >
+              Home
+            </a>
             <motion.a
               href="https://seetaluxuryescape.pathfndr.io/search/trips#travel"
               target="_blank"
@@ -127,6 +135,14 @@ const Header=()=> {
             >
               About
             </Link>
+            <a
+              href="https://seetaluxuryescape.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-white hover:text-amber-400 transition-colors"
+            >
+              Home
+            </a>
             <a
               href="https://seetaluxuryescape.pathfndr.io/search/trips#travel"
               target="_blank"
