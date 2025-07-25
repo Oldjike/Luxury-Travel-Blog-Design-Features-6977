@@ -17,10 +17,22 @@ const BlogFeed = () => {
     { id: 'culture', name: 'Local Culture', color: 'blue' },
     { id: 'luxury', name: 'Luxury Escapes', color: 'purple' },
     { id: 'caribbean', name: 'Caribbean Paradise', color: 'cyan' },
-    { id: 'transformative', name: 'Transformative Travel', color: 'violet' }
+    { id: 'transformative', name: 'Transformative Travel', color: 'violet' },
+    { id: 'mexican', name: 'Mexican Riviera', color: 'orange' }
   ];
 
   const blogPosts = [
+    {
+      id: 'majestic-elegance-costa-mujeres',
+      title: "A Luxurious Escape: Exploring Majestic Elegance Costa Mujeres",
+      excerpt: "Experience luxury redefined at the brand-new Majestic Mirage Costa Mujeres – All-Suite Resort in Mexico with impressive pre-opening rates starting January 15!",
+      image: "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=800&h=600&fit=crop",
+      category: 'mexican',
+      author: 'Seeta Luxury Travel Team',
+      readTime: '16 min read',
+      date: '2025-01-25',
+      featured: true
+    },
     {
       id: 'luxury-retreats-transformation',
       title: "5 Exclusive Luxury Retreats To Transform Your Travel Experience",
@@ -264,7 +276,8 @@ const BlogFeed = () => {
                   >
                     <SafeIcon icon={FiHeart} className="text-sm" />
                     <span className="text-sm">
-                      {post.id === 'luxury-retreats-transformation' ? '67' :
+                      {post.id === 'majestic-elegance-costa-mujeres' ? '35' :
+                       post.id === 'luxury-retreats-transformation' ? '67' :
                        post.id === 'sandals-grande-antigua' ? '28' : 
                        post.id === 'club-med-quebec-escape' ? '45' : 
                        post.id === 'club-med-quebec' ? '32' : '24'}
