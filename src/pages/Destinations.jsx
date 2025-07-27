@@ -1,11 +1,11 @@
 import React from 'react';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const {FiMapPin, FiChevronRight, FiStar} = FiIcons;
+const { FiMapPin, FiChevronRight, FiStar } = FiIcons;
 
 const Destinations = () => {
   const destinations = [
@@ -113,11 +113,11 @@ const Destinations = () => {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Destinations Grid */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -131,7 +131,7 @@ const Destinations = () => {
             </p>
           </motion.div>
           
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -200,9 +200,9 @@ const Destinations = () => {
               </motion.div>
             ))}
           </motion.div>
-          
+
           {/* Contact CTA */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -214,17 +214,20 @@ const Destinations = () => {
             <p className="text-xl text-slate-300 font-light mb-8 max-w-3xl mx-auto">
               Our luxury travel specialists are ready to craft your perfect Caribbean, Mexican, or Latin American adventure
             </p>
-            <motion.button
+            <motion.a
+              href="https://seetaluxuryescape.com/contact"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-amber-600 to-amber-500 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all"
+              className="bg-gradient-to-r from-amber-600 to-amber-500 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all inline-block"
             >
               Schedule a Consultation
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );

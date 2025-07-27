@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const {FiInstagram,FiTwitter,FiFacebook,FiYoutube,FiMail,FiPhone,FiMapPin,FiGlobe}=FiIcons;
+const { FiInstagram, FiTwitter, FiFacebook, FiYoutube, FiMail, FiPhone, FiMapPin, FiGlobe } = FiIcons;
 
-const Footer=()=> {
+const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-slate-900 to-black text-white py-16 px-6">
       <div className="max-w-7xl mx-auto">
@@ -21,7 +21,7 @@ const Footer=()=> {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold tracking-tight">
-                    <a href="https://seetaluxuryescape.com" target="_blank" rel="noopener noreferrer">Seetaluxuryescape</a>
+                    <span>SeetaLuxuryEscape</span>
                   </h3>
                   <p className="text-amber-400 text-xs font-light">Luxury Travel Experiences</p>
                 </div>
@@ -31,11 +31,11 @@ const Footer=()=> {
               Crafting extraordinary luxury travel experiences that transform journeys into transcendent moments of discovery and wonder.
             </p>
             <div className="flex space-x-4">
-              {[FiInstagram,FiTwitter,FiFacebook,FiYoutube].map((Icon,index)=> (
+              {[FiInstagram, FiTwitter, FiFacebook, FiYoutube].map((Icon, index) => (
                 <motion.a
                   key={index}
                   href="#"
-                  whileHover={{scale: 1.1,y: -2}}
+                  whileHover={{ scale: 1.1, y: -2 }}
                   className="bg-slate-800/50 p-3 rounded-full hover:bg-amber-500/20 transition-all"
                 >
                   <SafeIcon icon={Icon} className="text-lg" />
@@ -48,12 +48,9 @@ const Footer=()=> {
           <div>
             <h4 className="text-lg font-medium mb-6">Destinations</h4>
             <ul className="space-y-3">
-              {['Jamaica','St. Lucia','Mexico (Riviera Maya)','Barbados','Dominican Republic','Costa Rica'].map((destination)=> (
+              {['Jamaica', 'St. Lucia', 'Mexico (Riviera Maya)', 'Barbados', 'Dominican Republic', 'Costa Rica'].map((destination) => (
                 <li key={destination}>
-                  <Link
-                    to="/destinations"
-                    className="text-slate-400 hover:text-amber-400 transition-colors font-light"
-                  >
+                  <Link to="/destinations" className="text-slate-400 hover:text-amber-400 transition-colors font-light">
                     {destination}
                   </Link>
                 </li>
@@ -65,12 +62,9 @@ const Footer=()=> {
           <div>
             <h4 className="text-lg font-medium mb-6">Experiences</h4>
             <ul className="space-y-3">
-              {['Wellness Retreats','Culinary Journeys','Cultural Immersion','Adventure Escapes','Romantic Getaways','Family Luxury'].map((experience)=> (
+              {['Wellness Retreats', 'Culinary Journeys', 'Cultural Immersion', 'Adventure Escapes', 'Romantic Getaways', 'Family Luxury'].map((experience) => (
                 <li key={experience}>
-                  <Link
-                    to="/experiences"
-                    className="text-slate-400 hover:text-amber-400 transition-colors font-light"
-                  >
+                  <Link to="/experiences" className="text-slate-400 hover:text-amber-400 transition-colors font-light">
                     {experience}
                   </Link>
                 </li>
@@ -95,7 +89,7 @@ const Footer=()=> {
                 <div className="text-slate-400 font-light">
                   <p>Direct Travel New Wave</p>
                   <p>1075 Bay Street</p>
-                  <p>Toronto,Ontario,M5S 2B1</p>
+                  <p>Toronto, Ontario, M5S 2B1</p>
                   <p className="mt-2 text-xs">TICO: 50023509</p>
                 </div>
               </div>
@@ -111,8 +105,8 @@ const Footer=()=> {
                   className="flex-1 bg-slate-800/50 text-white placeholder-slate-500 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500"
                 />
                 <motion.button
-                  whileHover={{scale: 1.05}}
-                  whileTap={{scale: 0.95}}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-amber-600 to-amber-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all"
                 >
                   Subscribe
@@ -126,7 +120,7 @@ const Footer=()=> {
         <div className="border-t border-slate-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-slate-500 text-sm font-light">
-              © 2025 <a href="https://seetaluxuryescape.com" target="_blank" rel="noopener noreferrer">Seetaluxuryescape</a>. All rights reserved. Crafted with passion for luxury travel.
+              © 2025 SeetaLuxuryEscape. All rights reserved. Crafted with passion for luxury travel.
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-slate-500 hover:text-amber-400 transition-colors">Privacy Policy</a>

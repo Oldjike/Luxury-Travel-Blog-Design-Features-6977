@@ -1,20 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const { FiArrowLeft, FiClock, FiUser, FiHeart, FiShare2, FiBookmark, FiMapPin, FiCalendar, FiStar, FiCompass, FiKey, FiGift, FiEye, FiDollarSign, FiUsers, FiHome } = FiIcons;
+const { FiArrowLeft, FiClock, FiUser, FiHeart, FiShare2, FiBookmark, FiMapPin, FiCalendar, FiStar, FiCompass, FiKey, FiGift, FiEye, FiDollarSign, FiUsers, FiHome, FiX, FiSend } = FiIcons;
 
 const LuxuryTravelSecretsPost = () => {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    destination: '',
+    message: '',
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [likes, setLikes] = useState(42);
+  const [reviews, setReviews] = useState(73);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [hasReviewed, setHasReviewed] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent('New Luxury Travel Inquiry - Travel Secrets');
+      const body = encodeURIComponent(`
+Name: ${formData.name}
+Email: ${formData.email}
+Preferred Destination: ${formData.destination}
+Message: ${formData.message}
+
+Source: Luxury Travel Secrets Blog Post
+      `);
+      
+      const mailtoLink = `mailto:johnchandra@rogers.com?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+      
+      setFormSubmitted(true);
+      
+      setTimeout(() => {
+        setFormSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          destination: '',
+          message: '',
+        });
+        setIsContactFormOpen(false);
+        setIsSubmitting(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleLike = () => {
+    if (!hasLiked) {
+      setLikes(likes + 1);
+      setHasLiked(true);
+    }
+  };
+
+  const handleReview = () => {
+    if (!hasReviewed) {
+      setReviews(reviews + 1);
+      setHasReviewed(true);
+    }
+  };
+
   const post = {
     id: 'luxury-travel-secrets-revealed',
     title: "Top Six Powerful Travel Secrets Revealed in the Revolutionary Walkthrough",
     subtitle: "Discover the ultimate travel secrets for luxurious getaways with this revolutionary walkthrough",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=800&fit=crop",
-    author: 'Seeta Luxury Travel Team',
+    author: 'SeetaLuxuryEscape Team',
     readTime: '20 min read',
     date: '2025-01-26',
     category: 'Travel Secrets'
@@ -399,7 +473,7 @@ const LuxuryTravelSecretsPost = () => {
             <div className="bg-slate-700/30 p-8 rounded-xl">
               <h3 className="text-xl text-white font-light mb-4">Modern Era</h3>
               <p className="text-slate-300 font-light leading-relaxed">
-                In the modern era, luxury travel has become more accessible to a wider range of travelers, thanks to advancements in transportation and accommodations. High-end hotels, private jets, luxury cruises, and exclusive resorts now cater to affluent individuals seeking unique experiences and top-notch service. The rise of luxury travel agencies and concierge services has also made it easier for travelers to plan bespoke trips tailored to their preferences.
+                In the modern era, luxury travel has become more accessible to a wider range of travelers, thanks to advancements in transportation and accommodations. High-end hotels, private jets, luxury cruises, and exclusive resorts now cater to affluent individuals seeking unique experiences and top-notch service. The rise of luxury travel agencies like SeetaLuxuryEscape has made it easier for travelers to plan bespoke trips tailored to their preferences and desires.
               </p>
             </div>
           </div>
@@ -424,6 +498,7 @@ const LuxuryTravelSecretsPost = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setIsContactFormOpen(true)}
               className="bg-white text-amber-600 px-8 py-4 rounded-full font-medium hover:shadow-xl transition-all"
             >
               Start Planning Your Luxury Escape
@@ -459,10 +534,15 @@ const LuxuryTravelSecretsPost = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 bg-slate-800/50 text-white px-6 py-3 rounded-full hover:bg-slate-700/50 transition-all"
+                onClick={handleLike}
+                className={`flex items-center space-x-2 px-6 py-3 rounded-full transition-all ${
+                  hasLiked 
+                    ? 'bg-amber-500 text-white' 
+                    : 'bg-slate-800/50 text-white hover:bg-slate-700/50'
+                }`}
               >
                 <SafeIcon icon={FiHeart} className="text-lg" />
-                <span>42 Likes</span>
+                <span>{likes} Likes</span>
               </motion.button>
               
               <motion.button
@@ -485,12 +565,19 @@ const LuxuryTravelSecretsPost = () => {
             </div>
             
             <div className="flex items-center space-x-2 text-amber-400">
-              <SafeIcon icon={FiStar} className="text-lg" />
-              <SafeIcon icon={FiStar} className="text-lg" />
-              <SafeIcon icon={FiStar} className="text-lg" />
-              <SafeIcon icon={FiStar} className="text-lg" />
-              <SafeIcon icon={FiStar} className="text-lg" />
-              <span className="text-white ml-2">4.9 (73 reviews)</span>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleReview}
+                className="flex items-center space-x-2"
+              >
+                <SafeIcon icon={FiStar} className="text-lg" />
+                <SafeIcon icon={FiStar} className="text-lg" />
+                <SafeIcon icon={FiStar} className="text-lg" />
+                <SafeIcon icon={FiStar} className="text-lg" />
+                <SafeIcon icon={FiStar} className="text-lg" />
+                <span className="text-white ml-2">4.9 ({reviews} reviews)</span>
+              </motion.button>
             </div>
           </motion.div>
 
@@ -547,6 +634,108 @@ const LuxuryTravelSecretsPost = () => {
           </div>
         </div>
       </section>
+
+      {/* Compact Contact Form Modal */}
+      <AnimatePresence>
+        {isContactFormOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-slate-800 rounded-xl max-w-md w-full p-6 relative"
+            >
+              <button 
+                className="absolute top-4 right-4 text-slate-400 hover:text-white"
+                onClick={() => setIsContactFormOpen(false)}
+              >
+                <SafeIcon icon={FiX} className="text-xl" />
+              </button>
+
+              {formSubmitted ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <SafeIcon icon={FiSend} className="text-green-400 text-2xl" />
+                  </div>
+                  <h3 className="text-xl text-white font-light mb-2">Inquiry Sent!</h3>
+                  <p className="text-slate-400 text-sm">
+                    Thank you for contacting SeetaLuxuryEscape. We'll be in touch shortly.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h3 className="text-xl text-white font-light mb-4 text-center">
+                    Create Your Perfect Luxury Getaway
+                  </h3>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      />
+                    </div>
+                    
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      />
+                    </div>
+                    
+                    <div>
+                      <input
+                        type="text"
+                        name="destination"
+                        placeholder="Preferred Destination"
+                        value={formData.destination}
+                        onChange={handleInputChange}
+                        className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      />
+                    </div>
+                    
+                    <div>
+                      <textarea
+                        name="message"
+                        placeholder="Tell us about your dream getaway..."
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows="3"
+                        className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      ></textarea>
+                    </div>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-white py-3 rounded-lg hover:shadow-lg transition-all disabled:opacity-50"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Submit'}
+                    </motion.button>
+                  </form>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
