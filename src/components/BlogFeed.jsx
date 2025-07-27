@@ -18,10 +18,22 @@ const BlogFeed = () => {
     { id: 'luxury', name: 'Luxury Escapes', color: 'purple' },
     { id: 'caribbean', name: 'Caribbean Paradise', color: 'cyan' },
     { id: 'transformative', name: 'Transformative Travel', color: 'violet' },
-    { id: 'mexican', name: 'Mexican Riviera', color: 'orange' }
+    { id: 'mexican', name: 'Mexican Riviera', color: 'orange' },
+    { id: 'secrets', name: 'Travel Secrets', color: 'indigo' }
   ];
 
   const blogPosts = [
+    {
+      id: 'luxury-travel-secrets-revealed',
+      title: "Top Six Powerful Travel Secrets Revealed in the Revolutionary Walkthrough",
+      excerpt: "Discover the ultimate travel secrets for luxurious getaways with this revolutionary walkthrough that will transform your travel experiences forever.",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+      category: 'secrets',
+      author: 'Seeta Luxury Travel Team',
+      readTime: '20 min read',
+      date: '2025-01-26',
+      featured: true
+    },
     {
       id: 'majestic-elegance-costa-mujeres',
       title: "A Luxurious Escape: Exploring Majestic Elegance Costa Mujeres",
@@ -276,7 +288,8 @@ const BlogFeed = () => {
                   >
                     <SafeIcon icon={FiHeart} className="text-sm" />
                     <span className="text-sm">
-                      {post.id === 'majestic-elegance-costa-mujeres' ? '35' :
+                      {post.id === 'luxury-travel-secrets-revealed' ? '42' :
+                       post.id === 'majestic-elegance-costa-mujeres' ? '35' :
                        post.id === 'luxury-retreats-transformation' ? '67' :
                        post.id === 'sandals-grande-antigua' ? '28' : 
                        post.id === 'club-med-quebec-escape' ? '45' : 
