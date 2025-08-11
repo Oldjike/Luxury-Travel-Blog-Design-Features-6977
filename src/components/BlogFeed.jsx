@@ -1,28 +1,52 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import {motion} from 'framer-motion';
+import {Link} from 'react-router-dom';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiClock, FiUser, FiHeart, FiBookmark, FiArrowRight } = FiIcons;
+const {FiClock, FiUser, FiHeart, FiBookmark, FiArrowRight} = FiIcons;
 
 const BlogFeed = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredPost, setHoveredPost] = useState(null);
 
   const categories = [
-    { id: 'all', name: 'All Stories', color: 'amber' },
-    { id: 'wellness', name: 'Wellness Retreats', color: 'emerald' },
-    { id: 'culinary', name: 'Epicurean Journeys', color: 'rose' },
-    { id: 'culture', name: 'Local Culture', color: 'blue' },
-    { id: 'luxury', name: 'Luxury Escapes', color: 'purple' },
-    { id: 'caribbean', name: 'Caribbean Paradise', color: 'cyan' },
-    { id: 'transformative', name: 'Transformative Travel', color: 'violet' },
-    { id: 'mexican', name: 'Mexican Riviera', color: 'orange' },
-    { id: 'secrets', name: 'Travel Secrets', color: 'indigo' }
+    {id: 'all', name: 'All Stories', color: 'amber'},
+    {id: 'wellness', name: 'Wellness Retreats', color: 'emerald'},
+    {id: 'culinary', name: 'Epicurean Journeys', color: 'rose'},
+    {id: 'culture', name: 'Local Culture', color: 'blue'},
+    {id: 'luxury', name: 'Luxury Escapes', color: 'purple'},
+    {id: 'caribbean', name: 'Caribbean Paradise', color: 'cyan'},
+    {id: 'transformative', name: 'Transformative Travel', color: 'violet'},
+    {id: 'mexican', name: 'Mexican Riviera', color: 'orange'},
+    {id: 'secrets', name: 'Travel Secrets', color: 'indigo'},
+    {id: 'romantic', name: 'Romantic Travel', color: 'pink'},
+    {id: 'family', name: 'Family Travel', color: 'green'}
   ];
 
   const blogPosts = [
+    {
+      id: 'family-holidays',
+      title: "Win a Week of Bespoke Family Holidays — Keep the Memories",
+      excerpt: "Create unforgettable moments with your loved ones that will last a lifetime with a completely customized family vacation.",
+      image: "https://images.unsplash.com/photo-1602088113235-229c19758e9f?w=800&h=600&fit=crop",
+      category: 'family',
+      author: 'Seeta Luxury Travel Team',
+      readTime: '12 min read',
+      date: '2025-02-10',
+      featured: true
+    },
+    {
+      id: 'romantic-destinations',
+      title: "Stunning Destinations Built for Love and Affection",
+      excerpt: "These captivating places inspire love and connection and invite travellers to immerse themselves in their beauty and magic.",
+      image: "https://images.unsplash.com/photo-1515859005217-8a1f08870f59?w=800&h=600&fit=crop",
+      category: 'romantic',
+      author: 'Seeta Luxury Travel Team',
+      readTime: '10 min read',
+      date: '2025-05-14',
+      featured: true
+    },
     {
       id: 'luxury-travel-secrets-revealed',
       title: "Top Six Powerful Travel Secrets Revealed in the Revolutionary Walkthrough",
@@ -48,7 +72,7 @@ const BlogFeed = () => {
     {
       id: 'luxury-retreats-transformation',
       title: "5 Exclusive Luxury Retreats To Transform Your Travel Experience",
-      excerpt: "Discover extraordinary retreats that offer the sacred gift of transformation, where every breath becomes a prayer and every experience writes itself into who you are.",
+      excerpt: "Discover extraordinary retreats that offer the sacred gift of transformation,where every breath becomes a prayer and every experience writes itself into who you are.",
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=600&fit=crop",
       category: 'transformative',
       author: 'Seeta Luxury Travel Team',
@@ -59,7 +83,7 @@ const BlogFeed = () => {
     {
       id: 'sandals-grande-antigua',
       title: "Sandals Grande Antigua: Your Ultimate Caribbean Paradise",
-      excerpt: "Discover luxury, romance, and adventure on Dickenson Bay, one of the Caribbean's most beautiful beaches with world-class amenities.",
+      excerpt: "Discover luxury,romance,and adventure on Dickenson Bay,one of the Caribbean's most beautiful beaches with world-class amenities.",
       image: "https://images.unsplash.com/photo-1559475555-6f5a22e60b5a?w=800&h=600&fit=crop",
       category: 'caribbean',
       author: 'Seeta Luxury Travel Team',
@@ -70,7 +94,7 @@ const BlogFeed = () => {
     {
       id: 'club-med-quebec-escape',
       title: "Discover Your Year-Round Escape at Club Med Québec Charlevoix",
-      excerpt: "Where adventure meets tranquility, culture blends with relaxation, and all-inclusive luxury is available all year long!",
+      excerpt: "Where adventure meets tranquility,culture blends with relaxation,and all-inclusive luxury is available all year long!",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
       category: 'luxury',
       author: 'Seeta Luxury Travel Team',
@@ -81,7 +105,7 @@ const BlogFeed = () => {
     {
       id: 'club-med-quebec',
       title: "Club Med Québec Charlevoix: Your Four-Season Canadian Escape to Pure Bliss",
-      excerpt: "Experience a luxury all-inclusive resort that transforms with every season, offering the perfect blend of adventure, relaxation, and cultural immersion.",
+      excerpt: "Experience a luxury all-inclusive resort that transforms with every season,offering the perfect blend of adventure,relaxation,and cultural immersion.",
       image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop",
       category: 'luxury',
       author: 'Seeta Luxury Travel Team',
@@ -92,7 +116,7 @@ const BlogFeed = () => {
     {
       id: 1,
       title: "Himalayan Wellness: A Journey to Inner Peace",
-      excerpt: "Discover transformative wellness practices in the serene mountains of Bhutan, where ancient traditions meet modern luxury.",
+      excerpt: "Discover transformative wellness practices in the serene mountains of Bhutan,where ancient traditions meet modern luxury.",
       image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
       category: 'wellness',
       author: 'Sophia Chen',
@@ -152,7 +176,9 @@ const BlogFeed = () => {
     }
   ];
 
-  const filteredPosts = activeFilter === 'all' ? blogPosts : blogPosts.filter(post => post.category === activeFilter);
+  const filteredPosts = activeFilter === 'all' 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === activeFilter);
 
   return (
     <section className="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-800">
@@ -288,12 +314,14 @@ const BlogFeed = () => {
                   >
                     <SafeIcon icon={FiHeart} className="text-sm" />
                     <span className="text-sm">
-                      {post.id === 'luxury-travel-secrets-revealed' ? '42' :
-                       post.id === 'majestic-elegance-costa-mujeres' ? '35' :
-                       post.id === 'luxury-retreats-transformation' ? '67' :
-                       post.id === 'sandals-grande-antigua' ? '28' : 
-                       post.id === 'club-med-quebec-escape' ? '45' : 
-                       post.id === 'club-med-quebec' ? '32' : '24'}
+                      {post.id === 'family-holidays' ? '29' :
+                        post.id === 'romantic-destinations' ? '56' :
+                        post.id === 'luxury-travel-secrets-revealed' ? '42' :
+                        post.id === 'majestic-elegance-costa-mujeres' ? '35' :
+                        post.id === 'luxury-retreats-transformation' ? '67' :
+                        post.id === 'sandals-grande-antigua' ? '28' :
+                        post.id === 'club-med-quebec-escape' ? '45' :
+                        post.id === 'club-med-quebec' ? '32' : '24'}
                     </span>
                   </motion.button>
                 </div>
